@@ -16,16 +16,16 @@ func NewFooHandler(f *FooService) *FooHandler {
 }
 
 // ReadOne godoc
-// @Summary Update Foo
-// @Description Path a Foo
+// @Summary Read a Foo
+// @Description Read a Foo
 // @Tags Foo
 // @Accept application/x-www-form-urlencoded
 // @Produce json
 // @Param id path int true "Foo ID"
 // @Success 200 {object} Foo
-// @Failure 400 {object} error
-// @Failure 404 {object} error
-// @Failure 500 {object} error
+// @Failure 400 {object} any
+// @Failure 404 {object} any
+// @Failure 500 {object} any
 // @Router /foo/{id} [get]
 func (f *FooHandler) ReadOne(c *gin.Context) {
 	// get ID
@@ -38,8 +38,8 @@ func (f *FooHandler) ReadOne(c *gin.Context) {
 }
 
 // ReadMany godoc
-// @Summary Update Foo
-// @Description Path a Foo
+// @Summary Read Many Foo
+// @Description Read May Foo
 // @Tags Foo
 // @Accept application/x-www-form-urlencoded
 // @Produce json
@@ -48,8 +48,8 @@ func (f *FooHandler) ReadOne(c *gin.Context) {
 // @Param page query int false "Page"
 // @Param rpp query int false "Results per page"
 // @Success 200 {object} FooResponse
-// @Failure 400 {object} error
-// @Failure 500 {object} error
+// @Failure 400 {object} any
+// @Failure 500 {object} any
 // @Router /foo [get]
 func (f *FooHandler) ReadMany(c *gin.Context) {
 	c.JSON(200, f.FooService.FindAll())
@@ -58,12 +58,12 @@ func (f *FooHandler) ReadMany(c *gin.Context) {
 // Create godoc
 // @Summary Create Foo
 // @Description POST a foo, make a foo
-// @Tags foo
+// @Tags Foo
 // @Accept application/json
 // @Produce json
 // @Param Foo body Foo true "Foo"
-// @Success 201 {object} error
-// @Failure 400 {object} error
+// @Success 201 {object} any
+// @Failure 400 {object} any
 // @Router /foo [post]
 func (f *FooHandler) Create(c *gin.Context) {
 	c.JSON(201, f.FooService.FooRepo.Create())
@@ -71,16 +71,16 @@ func (f *FooHandler) Create(c *gin.Context) {
 
 // Update godoc
 // @Summary Update Foo
-// @Description Path a Foo
+// @Description Patch a Foo
 // @Tags Foo
 // @Accept application/json
 // @Produce json
 // @Param id path int true "Foo ID"
 // @Param Foo body Foo true "Foo"
-// @Success 200 {object} error
-// @Failure 400 {object} error
-// @Failure 404 {object} error
-// @Failure 500 {object} error
+// @Success 200 {object} any
+// @Failure 400 {object} any
+// @Failure 404 {object} any
+// @Failure 500 {object} any
 // @Router /foo/{id} [patch]
 func (f *FooHandler) Update(c *gin.Context) {
 	c.JSON(200, f.FooService.FooRepo.Update())
@@ -94,11 +94,11 @@ func (f *FooHandler) Update(c *gin.Context) {
 // @Accept application/json
 // @Produce json
 // @Param id path int true "Foo ID"
-// @Success 204 {object} error
-// @Failure 400 {object} error
-// @Failure 404 {object} error
-// @Failure 500 {object} error
-// @Router /foo/{id} [patch]
+// @Success 204 {object} any
+// @Failure 400 {object} any
+// @Failure 404 {object} any
+// @Failure 500 {object} any
+// @Router /foo/{id} [delete]
 func (f *FooHandler) Delete(c *gin.Context) {
 	c.JSON(204, f.FooService.FooRepo.Delete())
 }

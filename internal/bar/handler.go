@@ -16,16 +16,16 @@ func NewBarHandler(b *BarService) *BarHandler {
 }
 
 // ReadOne godoc
-// @Summary Update Bar
-// @Description Path a Bar
+// @Summary Read a Bar
+// @Description Read a Bar
 // @Tags Bar
 // @Accept application/x-www-form-urlencoded
 // @Produce json
 // @Param id path int true "Bar ID"
 // @Success 200 {object} Bar
-// @Failure 400 {object} error
-// @Failure 404 {object} error
-// @Failure 500 {object} error
+// @Failure 400 {object} any
+// @Failure 404 {object} any
+// @Failure 500 {object} any
 // @Router /bar/{id} [get]
 func (b *BarHandler) ReadOne(c *gin.Context) {
 	// get ID
@@ -37,8 +37,8 @@ func (b *BarHandler) ReadOne(c *gin.Context) {
 }
 
 // ReadMany godoc
-// @Summary Update Bar
-// @Description Path a Bar
+// @Summary Read Many Bar
+// @Description Read Many Bar
 // @Tags Bar
 // @Accept application/x-www-form-urlencoded
 // @Produce json
@@ -47,8 +47,8 @@ func (b *BarHandler) ReadOne(c *gin.Context) {
 // @Param page query int false "Page"
 // @Param rpp query int false "Results per page"
 // @Success 200 {object} BarResponse
-// @Failure 400 {object} error
-// @Failure 500 {object} error
+// @Failure 400 {object} any
+// @Failure 500 {object} any
 // @Router /bar [get]
 func (b *BarHandler) ReadMany(c *gin.Context) {
 	c.JSON(200, b.BarService.BarRepo.FindAll())
@@ -57,12 +57,12 @@ func (b *BarHandler) ReadMany(c *gin.Context) {
 // Create godoc
 // @Summary Create Bar
 // @Description POST a bar, make a bar
-// @Tags bar
+// @Tags Bar
 // @Accept application/json
 // @Produce json
 // @Param Bar body Bar true "Bar"
-// @Success 201 {object} error
-// @Failure 400 {object} error
+// @Success 201 {object} any
+// @Failure 400 {object} any
 // @Router /bar [post]
 func (b *BarHandler) Create(c *gin.Context) {
 	c.JSON(201, b.BarService.BarRepo.Create())
@@ -70,16 +70,16 @@ func (b *BarHandler) Create(c *gin.Context) {
 
 // Update godoc
 // @Summary Update Bar
-// @Description Path a Bar
+// @Description Patch a Bar
 // @Tags Bar
 // @Accept application/json
 // @Produce json
 // @Param id path int true "Bar ID"
 // @Param Bar body Bar true "Bar"
-// @Success 200 {object} error
-// @Failure 400 {object} error
-// @Failure 404 {object} error
-// @Failure 500 {object} error
+// @Success 200 {object} any
+// @Failure 400 {object} any
+// @Failure 404 {object} any
+// @Failure 500 {object} any
 // @Router /bar/{id} [patch]
 func (b *BarHandler) Update(c *gin.Context) {
 	c.JSON(200, b.BarService.BarRepo.Update())
@@ -93,11 +93,11 @@ func (b *BarHandler) Update(c *gin.Context) {
 // @Accept application/json
 // @Produce json
 // @Param id path int true "Bar ID"
-// @Success 204 {object} error
-// @Failure 400 {object} error
-// @Failure 404 {object} error
-// @Failure 500 {object} error
-// @Router /bar/{id} [patch]
+// @Success 204 {object} any
+// @Failure 400 {object} any
+// @Failure 404 {object} any
+// @Failure 500 {object} any
+// @Router /bar/{id} [delete]
 func (b *BarHandler) Delete(c *gin.Context) {
 	c.JSON(204, b.BarService.BarRepo.Delete())
 }

@@ -1,0 +1,371 @@
+definitions:
+  bar.Bar:
+    properties:
+      id:
+        type: integer
+    type: object
+  bar.BarResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/bar.Bar'
+        type: array
+    type: object
+  foo.Foo:
+    properties:
+      id:
+        type: integer
+    type: object
+  foo.FooResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/foo.Foo'
+        type: array
+    type: object
+info:
+  contact: {}
+paths:
+  /bar:
+    get:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: Read Many Bar
+      parameters:
+      - description: Order by id
+        enum:
+        - asc
+        - desc
+        in: query
+        name: order[id]
+        type: string
+      - description: Pagination
+        in: query
+        name: pagination
+        type: boolean
+      - description: Page
+        in: query
+        name: page
+        type: integer
+      - description: Results per page
+        in: query
+        name: rpp
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/bar.BarResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Read Many Bar
+      tags:
+      - Bar
+    post:
+      consumes:
+      - application/json
+      description: POST a bar, make a bar
+      parameters:
+      - description: Bar
+        in: body
+        name: Bar
+        required: true
+        schema:
+          $ref: '#/definitions/bar.Bar'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+      summary: Create Bar
+      tags:
+      - Bar
+  /bar/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Bar
+      parameters:
+      - description: Bar ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Delete Bar
+      tags:
+      - Bar
+    get:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: Read a Bar
+      parameters:
+      - description: Bar ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/bar.Bar'
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Read a Bar
+      tags:
+      - Bar
+    patch:
+      consumes:
+      - application/json
+      description: Patch a Bar
+      parameters:
+      - description: Bar ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Bar
+        in: body
+        name: Bar
+        required: true
+        schema:
+          $ref: '#/definitions/bar.Bar'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Update Bar
+      tags:
+      - Bar
+  /foo:
+    get:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: Read May Foo
+      parameters:
+      - description: Order by id
+        enum:
+        - asc
+        - desc
+        in: query
+        name: order[id]
+        type: string
+      - description: Pagination
+        in: query
+        name: pagination
+        type: boolean
+      - description: Page
+        in: query
+        name: page
+        type: integer
+      - description: Results per page
+        in: query
+        name: rpp
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/foo.FooResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Read Many Foo
+      tags:
+      - Foo
+    post:
+      consumes:
+      - application/json
+      description: POST a foo, make a foo
+      parameters:
+      - description: Foo
+        in: body
+        name: Foo
+        required: true
+        schema:
+          $ref: '#/definitions/foo.Foo'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+      summary: Create Foo
+      tags:
+      - Foo
+  /foo/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Foo
+      parameters:
+      - description: Foo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Delete Foo
+      tags:
+      - Foo
+    get:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: Read a Foo
+      parameters:
+      - description: Foo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/foo.Foo'
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Read a Foo
+      tags:
+      - Foo
+    patch:
+      consumes:
+      - application/json
+      description: Patch a Foo
+      parameters:
+      - description: Foo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Foo
+        in: body
+        name: Foo
+        required: true
+        schema:
+          $ref: '#/definitions/foo.Foo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Update Foo
+      tags:
+      - Foo
+swagger: "2.0"
