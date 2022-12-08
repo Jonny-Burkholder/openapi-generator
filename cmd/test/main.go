@@ -12,7 +12,20 @@ import (
 func main() {
 	router := gin.Default()
 
-	router.GET("/foo/{id}")
+	f := router.Group("/foo")
+	f.GET("", FooHandler.ReadMany)
+	f.GET("/{id}", FooHandler.ReadOne)
+	f.POST("", FooHandler.Create)
+	f.PATCH("/{id}", FooHandler.Update)
+	f.DELETE("/{id}", FooHandler.Delete)
+
+	b := router.Group("/bar")
+	b.GET("", BarHandler.ReadMany)
+	b.GET("/{id}", BarHandler.ReadOne)
+	b.POST("", BarHandler.Create)
+	b.PATCH("/{id}", BarHandler.Update)
+	b.DELETE("/{id}", BarHandler.Delete)
+
 	http.ListenAndServe(":4000", nil)
 }
 
