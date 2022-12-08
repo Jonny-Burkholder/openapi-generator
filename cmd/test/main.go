@@ -26,7 +26,7 @@ func main() {
 	b.PATCH("/{id}", BarHandler.Update)
 	b.DELETE("/{id}", BarHandler.Delete)
 
-	http.ListenAndServe(":4000", nil)
+	http.ListenAndServe(":4000", router)
 }
 
 var FooHandler = foo.NewFooHandler(foo.NewFooService(&repo.FooRepo{}))
