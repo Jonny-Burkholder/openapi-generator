@@ -1,0 +1,440 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: none
+    name: none
+  description: Test API for codegen
+  title: Test API
+  version: 2.0.0
+servers:
+- url: /
+paths:
+  /bar:
+    get:
+      description: Read Many Bar
+      parameters:
+      - description: Order by id
+        in: query
+        name: "order[id]"
+        schema:
+          enum:
+          - asc
+          - desc
+          type: string
+      - description: Pagination
+        in: query
+        name: pagination
+        schema:
+          type: boolean
+      - description: Page
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: Results per page
+        in: query
+        name: rpp
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bar.BarResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Internal Server Error
+      summary: Read Many Bar
+      tags:
+      - Bar
+    post:
+      description: "POST a bar, make a bar"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bar.Bar'
+        description: Bar
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad Request
+      summary: Create Bar
+      tags:
+      - Bar
+      x-codegen-request-body-name: Bar
+  /bar/{id}:
+    delete:
+      description: Delete Bar
+      parameters:
+      - description: Bar ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Internal Server Error
+      summary: Delete Bar
+      tags:
+      - Bar
+    get:
+      description: Read a Bar
+      parameters:
+      - description: Bar ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bar.Bar'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Internal Server Error
+      summary: Read a Bar
+      tags:
+      - Bar
+    patch:
+      description: Patch a Bar
+      parameters:
+      - description: Bar ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bar.Bar'
+        description: Bar
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Internal Server Error
+      summary: Update Bar
+      tags:
+      - Bar
+      x-codegen-request-body-name: Bar
+  /foo:
+    get:
+      description: Read May Foo
+      parameters:
+      - description: Order by id
+        in: query
+        name: "order[id]"
+        schema:
+          enum:
+          - asc
+          - desc
+          type: string
+      - description: Pagination
+        in: query
+        name: pagination
+        schema:
+          type: boolean
+      - description: Page
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: Results per page
+        in: query
+        name: rpp
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/foo.FooResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Internal Server Error
+      summary: Read Many Foo
+      tags:
+      - Foo
+    post:
+      description: "POST a foo, make a foo"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/foo.Foo'
+        description: Foo
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad Request
+      summary: Create Foo
+      tags:
+      - Foo
+      x-codegen-request-body-name: Foo
+  /foo/{id}:
+    delete:
+      description: Delete Foo
+      parameters:
+      - description: Foo ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Internal Server Error
+      summary: Delete Foo
+      tags:
+      - Foo
+    get:
+      description: Read a Foo
+      parameters:
+      - description: Foo ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/foo.Foo'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Internal Server Error
+      summary: Read a Foo
+      tags:
+      - Foo
+    patch:
+      description: Patch a Foo
+      parameters:
+      - description: Foo ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/foo.Foo'
+        description: Foo
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Internal Server Error
+      summary: Update Foo
+      tags:
+      - Foo
+      x-codegen-request-body-name: Foo
+components:
+  schemas:
+    bar.Bar:
+      example:
+        id: 0
+      properties:
+        id:
+          type: integer
+      type: object
+    bar.BarResponse:
+      example:
+        data:
+        - id: 0
+        - id: 0
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/bar.Bar'
+          type: array
+      type: object
+    foo.Foo:
+      example:
+        id: 0
+      properties:
+        id:
+          type: integer
+      type: object
+    foo.FooResponse:
+      example:
+        data:
+        - id: 0
+        - id: 0
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/foo.Foo'
+          type: array
+      type: object
+x-original-swagger-version: "2.0"
